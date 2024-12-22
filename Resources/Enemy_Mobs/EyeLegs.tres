@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://c4cclefqagmmh"]
+
+[ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_uphtc"]
+[ext_resource type="Texture2D" uid="uid://djm61qxkv87c8" path="res://Characters/Enemies/Mobs/3 v1.png" id="2_7rux3"]
+
+[resource]
+script = ExtResource("1_uphtc")
+title = "EyeLegs"
+texture = ExtResource("2_7rux3")
+health = 400.0
+damage = 5.0

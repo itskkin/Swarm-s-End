@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://cbwglfqhgajn1"]
+
+[ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_28kmy"]
+[ext_resource type="Texture2D" uid="uid://cynb2nvstguko" path="res://Characters/Enemies/Mobs/5 v1.png" id="2_hec3w"]
+
+[resource]
+script = ExtResource("1_28kmy")
+title = "EyeGhost"
+texture = ExtResource("2_hec3w")
+health = 300.0
+damage = 7.0

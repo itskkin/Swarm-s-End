@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cj0eqc5bectmk"]
+
+[ext_resource type="Shader" path="res://Shader/unique_shader.gdshader" id="1_7agv4"]
+
+[resource]
+shader = ExtResource("1_7agv4")
+shader_parameter/line_thickness = 1.0
+shader_parameter/glow_intensity = 2.0
+shader_parameter/blink_speed = 2.0

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://crt05faeuhy0v"]
+
+[ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_nticr"]
+[ext_resource type="Texture2D" uid="uid://bwxqd2w6sssdg" path="res://Characters/Enemies/Mobs/4 v1.png" id="2_24ovd"]
+
+[resource]
+script = ExtResource("1_nticr")
+title = "Triple"
+texture = ExtResource("2_24ovd")
+health = 1000.0
+damage = 9.0
