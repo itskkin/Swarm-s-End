@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://cbwglfqhgajn1"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://cbwglfqhgajn1"]
 
 [ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_28kmy"]
-[ext_resource type="Texture2D" uid="uid://cynb2nvstguko" path="res://Characters/Enemies/Mobs/5 v1.png" id="2_hec3w"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/PickupResource.gd" id="1_butwj"]
+[ext_resource type="Resource" uid="uid://bst62iyqq7cbj" path="res://Resources/PickUps/Magic_ring.tres" id="2_occtc"]
+[ext_resource type="Texture2D" uid="uid://m01dpfacdyap" path="res://Assets/Map/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/frames/pumpkin_dude_idle_anim_f0.png" id="4_rxfdv"]
 
 [resource]
 script = ExtResource("1_28kmy")
 title = "EyeGhost"
-texture = ExtResource("2_hec3w")
-health = 300.0
-damage = 7.0
+texture = ExtResource("4_rxfdv")
+health = 9.0
+damage = 2.0
+drops = Array[ExtResource("1_butwj")]([ExtResource("2_occtc")])

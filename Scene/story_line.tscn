@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://8jnqppqhfve4"]
+
+[ext_resource type="Script" path="res://Scripts/MainMenu/story_line.gd" id="1_cbe55"]
+[ext_resource type="Texture2D" uid="uid://brs53c05ihv4v" path="res://Assets/gui/gallery.png" id="1_f2tds"]
+[ext_resource type="FontFile" uid="uid://verkcyjmlc14" path="res://Assets/gui/font/CaslonAntique.ttf" id="2_dp1td"]
+[ext_resource type="Texture2D" uid="uid://buhnwnab7go8m" path="res://Assets/gui/main_menu/buttons/start_idle.png" id="3_ew5rp"]
+[ext_resource type="AudioStream" uid="uid://dthmv18bm1xv6" path="res://Assets/sound/introStoryline.wav" id="5_8rsyn"]
+
+[node name="StoryLine" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cbe55")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_f2tds")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+offset_top = 59.0
+offset_right = -61.0
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_dp1td")
+theme_override_font_sizes/normal_font_size = 28
+
+[node name="Button" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -199.0
+offset_top = -150.0
+offset_right = 192.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("3_ew5rp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8rsyn")
+autoplay = true
+playback_type = 1
+
+[connection signal="pressed" from="NinePatchRect/Button" to="." method="_on_button_pressed"]

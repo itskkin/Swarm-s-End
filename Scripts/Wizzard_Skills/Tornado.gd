@@ -1,9 +1,9 @@
 extends Skill
 class_name Tornado
-var damage : float = 400.0
+var damage : float = 20
 func _init(target):
-	cooldown = 4.0
-	texture = preload("res://Assets/skill-texture/48x48/skill_icons24.png")
+	cooldown = 3.5
+	texture = preload("res://Assets/skill-texture/Icons/tile009.png")
 	animation_name = "Tornado"
 	super._init(target)
 

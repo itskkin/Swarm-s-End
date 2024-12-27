@@ -7,7 +7,7 @@ var direction: Vector2 = Vector2.RIGHT:
 		if $AnimatedSprite2D.animation != "Tornado":
 			rotation = direction.angle()
 
-var animation_name: String = "fire"
+
 var damage: float = 100.0
 #motion of the spells
 func _physics_process(delta):

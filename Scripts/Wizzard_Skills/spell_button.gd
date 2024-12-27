@@ -5,6 +5,7 @@ extends TextureButton
 @onready var time = $Time
 @onready var timer = $Timer
  
+
 var skill = null
  
 var change_key = "":

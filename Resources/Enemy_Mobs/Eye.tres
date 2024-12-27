@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://du1xm7il4rgjo"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://du1xm7il4rgjo"]
 
 [ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_dv58t"]
-[ext_resource type="Texture2D" uid="uid://bfoir8tn1ptmh" path="res://Characters/Enemies/Mobs/1 v1.png" id="2_psp7i"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/PickupResource.gd" id="1_twdn3"]
+[ext_resource type="Resource" uid="uid://xjr0st2f44ae" path="res://Resources/PickUps/Red_Orb.tres" id="2_aikl1"]
+[ext_resource type="Texture2D" uid="uid://bciww73e41bel" path="res://Assets/Map/0x72_DungeonTilesetII_v1.7/0x72_DungeonTilesetII_v1.7/frames/big_demon_idle_anim_f3.png" id="4_0gtgt"]
 
 [resource]
 script = ExtResource("1_dv58t")
 title = "Eye"
-texture = ExtResource("2_psp7i")
-health = 150.0
+texture = ExtResource("4_0gtgt")
+health = 10.0
 damage = 1.0
+drops = Array[ExtResource("1_twdn3")]([ExtResource("2_aikl1")])

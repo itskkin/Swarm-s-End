@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://c1ku010aabh68"]
+[gd_scene load_steps=102 format=3 uid="uid://c1ku010aabh68"]
 
 [ext_resource type="Texture2D" uid="uid://bipxervcboyr8" path="res://Characters/wizzard/Attack  sprite sheet.png" id="1_8apv8"]
 [ext_resource type="Script" path="res://Scripts/wizzard.gd" id="1_h8b52"]
@@ -9,6 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://wyfpbhbpk6io" path="res://Characters/wizzard/Walk sprite sheet.png" id="5_rvcqu"]
 [ext_resource type="PackedScene" uid="uid://dt44d1v5bmexo" path="res://Scene/spell_button.tscn" id="8_3daqr"]
 [ext_resource type="Script" path="res://Scripts/Wizzard_Skills/skill_bar.gd" id="8_ayrnl"]
+[ext_resource type="Texture2D" uid="uid://bngtkgggnykln" path="res://Assets/skill-texture/xp&wpIcon/magic03orb.png" id="8_ltmyt"]
+[ext_resource type="Texture2D" uid="uid://brs53c05ihv4v" path="res://Assets/gui/gallery.png" id="9_c27lr"]
+[ext_resource type="PackedScene" uid="uid://bpe70cctgfjxr" path="res://Scene/slot.tscn" id="10_5cfdy"]
+[ext_resource type="FontFile" uid="uid://verkcyjmlc14" path="res://Assets/gui/font/CaslonAntique.ttf" id="10_2230y"]
+[ext_resource type="Resource" uid="uid://crqrvbstcxry2" path="res://Resources/Weapo_n/MagicWand.tres" id="11_8aom2"]
+[ext_resource type="Texture2D" uid="uid://doaikk8tsnvds" path="res://Assets/skill-texture/bar_shadow_round_large.png" id="12_20cab"]
+[ext_resource type="Texture2D" uid="uid://cw6fx7g2kwn7j" path="res://Assets/skill-texture/bar_round_gloss_large.png" id="13_rfqus"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/options.gd" id="14_v2nm5"]
+[ext_resource type="Texture2D" uid="uid://yyugi2wqtmve" path="res://Assets/gui/frame.png" id="18_0b6bd"]
+[ext_resource type="Script" path="res://Scripts/Dialogs/dialog_boxes.gd" id="18_v7mef"]
+[ext_resource type="Texture2D" uid="uid://dr1cjb3x70bon" path="res://Assets/skill-texture/ancient_witch.png" id="19_hvww6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qqbvr"]
 atlas = ExtResource("1_8apv8")
@@ -311,21 +322,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_a2sv6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
 [sub_resource type="Animation" id="Animation_tubas"]
 resource_name = "attack"
 length = 1.25
@@ -358,7 +354,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_b4fat"]
 resource_name = "death"
 length = 1.05
-loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -477,7 +472,6 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ym6ce"]
 _data = {
-"RESET": SubResource("Animation_a2sv6"),
 "attack": SubResource("Animation_tubas"),
 "death": SubResource("Animation_b4fat"),
 "hurt": SubResource("Animation_ypgqc"),
@@ -506,6 +500,30 @@ nodes/BlendSpace1D/position = Vector2(360, 130)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_4x0sl")
 nodes/TimeScale/position = Vector2(657, 115)
 nodes/output/position = Vector2(860, 120)
+node_connections = [&"TimeScale", 0, &"BlendSpace1D", &"output", 0, &"TimeScale"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sjm68"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3am7b"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_72xh0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_sjm68")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_3am7b")
+blend_point_1/pos = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hsxhd"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6nj77"]
+graph_offset = Vector2(-466, 11)
+nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_72xh0")
+nodes/BlendSpace1D/position = Vector2(-180, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hsxhd")
+nodes/TimeScale/position = Vector2(80, 140)
+nodes/output/position = Vector2(320, 160)
 node_connections = [&"TimeScale", 0, &"BlendSpace1D", &"output", 0, &"TimeScale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsr5a"]
@@ -581,30 +599,50 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nhkbq"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wawk6"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nibdc"]
 states/Attack/node = SubResource("AnimationNodeBlendTree_pmwc2")
 states/Attack/position = Vector2(659, 92)
+states/Death/node = SubResource("AnimationNodeBlendTree_6nj77")
+states/Death/position = Vector2(303, 214)
 states/Idle/node = SubResource("AnimationNodeBlendTree_0k06f")
 states/Idle/position = Vector2(396, 92)
+states/Start/position = Vector2(198, 100)
 states/Walk/node = SubResource("AnimationNodeBlendTree_53akl")
 states/Walk/position = Vector2(508, 188)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5tavd"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_mexrv"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_uv65v"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_gusww"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_jifa4"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_2hnym"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_nhkbq")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_5tavd"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_mexrv"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_uv65v"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_gusww"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_jifa4"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_2hnym"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_nhkbq"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_wawk6")]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1i2x2"]
-height = 68.0
+radius = 7.0
+height = 50.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o5j6u"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(430, 1, 1)
+angle_min = -451.8
+angle_max = 275.3
+gravity = Vector3(0, 98, 0)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c1fpa"]
-height = 68.0
+radius = 6.0
+height = 50.0
 
-[node name="Wizzard" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwe2h"]
+radius = 50.0
+
+[node name="Wizzard" type="CharacterBody2D" groups=["Wizzard"]]
 position = Vector2(2, -33)
 script = ExtResource("1_h8b52")
 projectile_node = ExtResource("2_euf8l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 4.5)
+scale = Vector2(0.90625, 0.859375)
 sprite_frames = SubResource("SpriteFrames_wyx5t")
 animation = &"idle"
-frame = 1
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -616,19 +654,78 @@ tree_root = SubResource("AnimationNodeStateMachine_nibdc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack/BlendSpace1D/blend_position = 0
 parameters/Attack/TimeScale/scale = 1.0
+parameters/Death/BlendSpace1D/blend_position = 0.0
+parameters/Death/TimeScale/scale = 0.5
 parameters/Idle/BlendSpace1D/blend_position = 0
 parameters/Walk/BlendSpace1D/blend_position = 0
 parameters/Walk/TimeScale/scale = 0.8
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-12, 0)
+position = Vector2(-11, 6)
 shape = SubResource("CapsuleShape2D_1i2x2")
 
 [node name="UI" type="CanvasGroup" parent="."]
+z_index = 5
 position = Vector2(-2, 33)
+
+[node name="Particle" type="GPUParticles2D" parent="UI"]
+process_mode = 3
+position = Vector2(-181, -192)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_o5j6u")
+texture = ExtResource("8_ltmyt")
+lifetime = 1.5
+
+[node name="Panel" type="NinePatchRect" parent="UI"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -158.0
+offset_right = 169.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_c27lr")
+region_rect = Rect2(48.4769, 50.1586, 1826.81, 980.452)
+patch_margin_top = 47
+
+[node name="Label" type="Label" parent="UI/Panel"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 33.0
+offset_right = 200.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("10_2230y")
+theme_override_font_sizes/font_size = 25
+text = "LEVEL UP"
+horizontal_alignment = 1
+
+[node name="Weapons" type="HBoxContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = 86.0
+offset_right = -96.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+
+[node name="Slot" parent="UI/Weapons" instance=ExtResource("10_5cfdy")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+size_flags_vertical = 0
+weapon = ExtResource("11_8aom2")
 
 [node name="SkillBar" type="HBoxContainer" parent="UI"]
 anchors_preset = 7
@@ -636,10 +733,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -108.0
-offset_top = 54.0
-offset_right = 108.0
-offset_bottom = 94.0
+offset_left = -89.0
+offset_top = 86.0
+offset_right = 127.0
+offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(120, 48)
@@ -662,17 +759,57 @@ layout_mode = 2
 [node name="SpellButton5" parent="UI/SkillBar" instance=ExtResource("8_3daqr")]
 layout_mode = 2
 
+[node name="EXP" type="TextureProgressBar" parent="UI"]
+unique_name_in_owner = true
+offset_left = 189.0
+offset_top = -190.0
+offset_right = 285.0
+offset_bottom = -166.0
+max_value = 10.0
+texture_under = ExtResource("12_20cab")
+texture_progress = ExtResource("13_rfqus")
+
+[node name="Level" type="Label" parent="UI/EXP"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 60.0
+offset_top = 28.0
+offset_right = 95.0
+offset_bottom = 51.0
+text = "Lvl 1
+"
+
+[node name="Options" type="VBoxContainer" parent="UI" node_paths=PackedStringArray("weapons", "particles", "panel")]
+unique_name_in_owner = true
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -82.0
+offset_right = 22.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_v2nm5")
+weapons = NodePath("../Weapons")
+particles = NodePath("../Particle")
+panel = NodePath("../Panel")
+
 [node name="SelfDamage" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="Collision" type="CollisionShape2D" parent="SelfDamage"]
 unique_name_in_owner = true
-position = Vector2(3, -1)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_c1fpa")
 
 [node name="Health" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+self_modulate = Color(1, 0, 0.0680938, 1)
 offset_left = -25.0
 offset_top = -43.0
 offset_right = 27.0
@@ -683,6 +820,61 @@ show_percentage = false
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="Magnet" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Magnet"]
+shape = SubResource("CircleShape2D_qwe2h")
+
+[node name="DialogBoxes" type="Control" parent="."]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_left = -279.0
+offset_top = 72.0
+offset_right = 154.0
+offset_bottom = 153.0
+script = ExtResource("18_v7mef")
+
+[node name="TextureRect" type="TextureRect" parent="DialogBoxes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_0b6bd")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogBoxes"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 13.0
+offset_right = -37.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_2230y")
+text = "This isn’t my study. Where in the Arcane Codex am I?"
+
+[node name="Label" type="Label" parent="DialogBoxes"]
+layout_mode = 0
+offset_left = 386.0
+offset_top = -23.0
+offset_right = 429.0
+theme_override_fonts/font = ExtResource("10_2230y")
+text = "Arkanos"
+
+[node name="Sprite2D" type="Sprite2D" parent="DialogBoxes"]
+position = Vector2(500, 31.25)
+scale = Vector2(0.347578, 0.364815)
+texture = ExtResource("19_hvww6")
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="SelfDamage" to="." method="_on_self_damage_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Magnet" to="." method="_on_magnet_area_entered"]

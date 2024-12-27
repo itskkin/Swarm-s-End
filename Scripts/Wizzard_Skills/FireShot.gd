@@ -1,11 +1,13 @@
 extends Skill
 class_name FireShot
 
-var damage : float = 100.0
+
+
+var damage : float = 10.0
 func _init(target):
 	cooldown = 1.5
 	animation_name = "fire"
-	texture = preload("res://Assets/skill-texture/48x48/skill_icons3.png")
+	texture = preload("res://Assets/skill-texture/Icons/tile005.png")
 	super._init(target)
 	
 	#in cast_spell extenteding the parents func and call multi shot

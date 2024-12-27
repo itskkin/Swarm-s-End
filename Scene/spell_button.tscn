@@ -11,7 +11,7 @@ events = [SubResource("InputEventKey_d36g8")]
 [node name="SpellButton" type="TextureButton"]
 custom_minimum_size = Vector2(40, 0)
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 41.0
 size_flags_horizontal = 4
 shortcut = SubResource("Shortcut_pwiec")
 ignore_texture_size = true

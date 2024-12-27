@@ -11,14 +11,25 @@ config_version=5
 [application]
 
 config/name="Swarm’s End"
+run/main_scene="res://Scene/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/skill-texture/ancient_witch.png"
+
+[autoload]
+
+SoundManager="*res://Scene/sound_manager.tscn"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [file_customization]
 
 folder_colors={
 "res://Resources/": "teal",
 "res://Resources/Enemy_Mobs/": "red",
+"res://Resources/PickUps/": "purple",
+"res://Resources/Weapo_n/": "orange",
 "res://Shader/": "red"
 }
 
@@ -45,6 +56,11 @@ move_down={
 ]
 }
 shoot={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+click={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]

@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://xitj0ktf8ifl"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://xitj0ktf8ifl"]
 
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/PickupResource.gd" id="1_ahahp"]
 [ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_rj313"]
-[ext_resource type="Texture2D" uid="uid://by2j0lplslfic" path="res://Characters/Enemies/Mobs/2.png" id="2_rtwv3"]
+[ext_resource type="Resource" uid="uid://xjr0st2f44ae" path="res://Resources/PickUps/Red_Orb.tres" id="2_64irb"]
+[ext_resource type="Texture2D" uid="uid://c0yrw3owvrgbc" path="res://Characters/Enemies/Mobs/14.png" id="4_p4re1"]
 
 [resource]
 script = ExtResource("1_rj313")
 title = "Cube"
-texture = ExtResource("2_rtwv3")
-health = 200.0
-damage = 3.0
+texture = ExtResource("4_p4re1")
+health = 5.0
+damage = 5.0
+drops = Array[ExtResource("1_ahahp")]([ExtResource("2_64irb")])

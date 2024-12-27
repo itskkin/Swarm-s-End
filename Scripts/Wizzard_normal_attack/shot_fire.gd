@@ -15,6 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 	#call take_damage action if the interacting body has one 
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
+		body.knockback += direction * 90
 
 
 func _on_visible_on_screen_enabler_2d_screen_exited() -> void:

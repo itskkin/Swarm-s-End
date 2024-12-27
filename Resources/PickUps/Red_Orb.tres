@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Orb" load_steps=4 format=3 uid="uid://xjr0st2f44ae"]
+
+[ext_resource type="Texture2D" uid="uid://bngtkgggnykln" path="res://Assets/skill-texture/xp&wpIcon/magic03orb.png" id="1_pov8u"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/Orb.gd" id="2_3sfmf"]
+[ext_resource type="AudioStream" uid="uid://6pi87yi1du6j" path="res://Assets/sound/pickups1.wav" id="3_otmu4"]
+
+[resource]
+script = ExtResource("2_3sfmf")
+XP = 1.0
+title = "Red Orb"
+icon = ExtResource("1_pov8u")
+description = "Gains Experience Points."
+sound = ExtResource("3_otmu4")

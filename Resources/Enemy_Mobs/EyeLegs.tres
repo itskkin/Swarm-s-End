@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://c4cclefqagmmh"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://c4cclefqagmmh"]
 
 [ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_uphtc"]
-[ext_resource type="Texture2D" uid="uid://djm61qxkv87c8" path="res://Characters/Enemies/Mobs/3 v1.png" id="2_7rux3"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/PickupResource.gd" id="1_yo5d4"]
+[ext_resource type="Resource" uid="uid://xjr0st2f44ae" path="res://Resources/PickUps/Red_Orb.tres" id="2_ys3e7"]
+[ext_resource type="Texture2D" uid="uid://bvcp4qbh140nk" path="res://Characters/Enemies/Mobs/15 v1.png" id="4_mg845"]
 
 [resource]
 script = ExtResource("1_uphtc")
 title = "EyeLegs"
-texture = ExtResource("2_7rux3")
-health = 400.0
-damage = 5.0
+texture = ExtResource("4_mg845")
+health = 25.0
+damage = 3.0
+drops = Array[ExtResource("1_yo5d4")]([ExtResource("2_ys3e7")])

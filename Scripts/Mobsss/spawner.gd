@@ -26,8 +26,8 @@ var second : int:
 		%Second.text = str(second).lpad(2,'0')
 
 #spawner will only spawn mobs when the total mobs are below 700
-func _physics_process(delta):
-	if get_tree().get_node_count_in_group("Enemy") < 700:
+func _physics_process(_delta):
+	if get_tree().get_node_count_in_group("Enemy") < 100:
 		can_spawn = true
 	else:
 		can_spawn = false
@@ -40,7 +40,9 @@ func spawn(pos: Vector2, elite : bool = false):
 	var enemy_instance = enemy.instantiate()
 	
 	#each minute will be a different wave of enemy
-	enemy_instance.type = enemy_types [min(minute, enemy_types.size()-1)]
+	var random_type_index = randi() % enemy_types.size()
+	enemy_instance.type = enemy_types [random_type_index]
+	
 	enemy_instance.position = pos
 	enemy_instance.player_reference = player
 	enemy_instance.elite = elite 
@@ -64,7 +66,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_pattern_timeout() -> void:
-	for i in range(75):
+	for i in range(40):
 		spawn(get_random_position())
 
 

@@ -1,10 +1,12 @@
 extends Weapon
 class_name SingleShot
 
+
 func shoot(source, target, scene_tree):
-	if target == null:
+	if target == null or scene_tree.paused == true:
 		return
 		
+	SoundManager.play_sfx(sound)
 	#instantiate the projetile node 
 	var projectile = projectile_node.instantiate()
 	
@@ -20,3 +22,19 @@ func shoot(source, target, scene_tree):
 #Override the activate function & call shoot
 func activate(source, target, scene_tree):
 	shoot(source, target, scene_tree)
+	
+
+#fucntion to upgrade item first check if any upgrade is available or not
+func upgrade_item():
+	if not is_upgradable():
+		return
+	
+	#if upgradable pick current upgrade 
+	var upgrade = upgrades[level - 1]
+	
+	damage += upgrade.damage
+	cooldown += upgrade.cooldown
+	speed += upgrade.speed
+	
+	#since this is based Resource just upgrade the common stats
+	level +=1

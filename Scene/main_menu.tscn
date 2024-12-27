@@ -1,0 +1,94 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1np86wkxma8d"]
+
+[ext_resource type="Texture2D" uid="uid://brs53c05ihv4v" path="res://Assets/gui/gallery.png" id="1_845bh"]
+[ext_resource type="FontFile" uid="uid://verkcyjmlc14" path="res://Assets/gui/font/CaslonAntique.ttf" id="1_cwu35"]
+[ext_resource type="Script" path="res://Scripts/MainMenu/main_menu.gd" id="1_xyx6t"]
+[ext_resource type="Texture2D" uid="uid://yyugi2wqtmve" path="res://Assets/gui/frame.png" id="2_wxgud"]
+[ext_resource type="Texture2D" uid="uid://buhnwnab7go8m" path="res://Assets/gui/main_menu/buttons/start_idle.png" id="3_lim38"]
+[ext_resource type="Texture2D" uid="uid://4xrlmw5oorwn" path="res://Assets/gui/main_menu/buttons/quit_idle.png" id="5_eggdt"]
+[ext_resource type="FontFile" uid="uid://deste1efawdlu" path="res://Assets/gui/font/MorrisRomanAlternate-Black.ttf" id="6_sbjfa"]
+[ext_resource type="AudioStream" uid="uid://b2xvjxmmcoo7h" path="res://Assets/sound/intro.wav" id="8_geu0y"]
+
+[sub_resource type="Theme" id="Theme_1n7p7"]
+default_font = ExtResource("1_cwu35")
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_1n7p7")
+script = ExtResource("1_xyx6t")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_845bh")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_top = 45.0
+offset_right = -44.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wxgud")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -12.0
+offset_right = 196.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("3_lim38")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 466.0
+offset_top = 447.0
+offset_right = 674.0
+offset_bottom = 513.0
+icon = ExtResource("5_eggdt")
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color(0.29634, 0.179352, 0.179352, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -397.0
+offset_top = -175.0
+offset_right = 389.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_sbjfa")
+theme_override_font_sizes/font_size = 150
+text = "Swarm's End"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_geu0y")
+autoplay = true
+playback_type = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_quit_2_pressed"]

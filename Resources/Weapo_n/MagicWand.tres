@@ -1,12 +1,111 @@
-[gd_resource type="Resource" script_class="SingleShot" load_steps=3 format=3 uid="uid://wnplr46v5v6o"]
+[gd_resource type="Resource" script_class="SingleShot" load_steps=20 format=3 uid="uid://crqrvbstcxry2"]
 
-[ext_resource type="PackedScene" uid="uid://t5jbdvpiyt5" path="res://Scene/shotFire.tscn" id="1_p6jxl"]
-[ext_resource type="Script" path="res://Scripts/Wizzard_normal_attack/SingleShot.gd" id="2_kj2pi"]
+[ext_resource type="PackedScene" uid="uid://t5jbdvpiyt5" path="res://Scene/shotFire.tscn" id="1_gr4h4"]
+[ext_resource type="Script" path="res://Scripts/Wizzard_normal_attack/SingleShot.gd" id="2_2cgds"]
+[ext_resource type="Texture2D" uid="uid://b6sd75htmjt2v" path="res://Assets/skill-texture/Icon36.png" id="3_1w2p1"]
+[ext_resource type="AudioStream" uid="uid://jgu2d0xh248b" path="res://Assets/sound/shoot1.wav" id="3_prvb1"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="4_qmkhy"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/Projectile_upgrade.gd" id="5_i3uai"]
+
+[sub_resource type="Resource" id="Resource_qbqwu"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 1.0
+cooldown = 0.0
+description = "+5 Damage"
+
+[sub_resource type="Resource" id="Resource_7etg7"]
+script = ExtResource("5_i3uai")
+speed = 100.0
+damage = 0.0
+cooldown = 0.0
+description = "+100 Speed"
+
+[sub_resource type="Resource" id="Resource_74cgo"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 0.0
+cooldown = -0.5
+description = "-0.5s Cooldown"
+
+[sub_resource type="Resource" id="Resource_ucovl"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 3.0
+cooldown = 0.0
+description = "+3 Damage"
+
+[sub_resource type="Resource" id="Resource_d2yox"]
+script = ExtResource("5_i3uai")
+speed = 50.0
+damage = 0.0
+cooldown = 0.0
+description = "+50 Speed"
+
+[sub_resource type="Resource" id="Resource_j30j6"]
+script = ExtResource("5_i3uai")
+speed = 100.0
+damage = 0.0
+cooldown = 0.0
+description = "+100 Speed"
+
+[sub_resource type="Resource" id="Resource_y8j0k"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 1.0
+cooldown = 0.0
+description = "+1 Damage"
+
+[sub_resource type="Resource" id="Resource_ddlut"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 0.0
+cooldown = -0.5
+description = "-0.5s Cooldwn"
+
+[sub_resource type="Resource" id="Resource_avco1"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 1.0
+cooldown = 0.0
+description = "+1 Damage"
+
+[sub_resource type="Resource" id="Resource_ot5mi"]
+script = ExtResource("5_i3uai")
+speed = 10.0
+damage = 0.0
+cooldown = 0.0
+description = "+70 Speed"
+
+[sub_resource type="Resource" id="Resource_1cb8t"]
+script = ExtResource("5_i3uai")
+speed = 100.0
+damage = 0.0
+cooldown = 0.0
+description = "+100 Speed"
+
+[sub_resource type="Resource" id="Resource_glf7d"]
+script = ExtResource("5_i3uai")
+speed = 0.0
+damage = 0.0
+cooldown = -0.4
+description = "-0.4s Cooldown
+"
+
+[sub_resource type="Resource" id="Resource_ln8h3"]
+script = ExtResource("5_i3uai")
+speed = 200.0
+damage = 0.0
+cooldown = 0.0
+description = "+200 Speed"
 
 [resource]
-script = ExtResource("2_kj2pi")
-title = ""
-damage = 5.0
-cooldown = 1.0
-speed = 0.0
-projectile_node = ExtResource("1_p6jxl")
+script = ExtResource("2_2cgds")
+title = "Magic Wand"
+texture = ExtResource("3_1w2p1")
+damage = 10.0
+cooldown = 1.5
+speed = 400.0
+projectile_node = ExtResource("1_gr4h4")
+upgrades = Array[ExtResource("4_qmkhy")]([SubResource("Resource_qbqwu"), SubResource("Resource_7etg7"), SubResource("Resource_74cgo"), SubResource("Resource_ucovl"), SubResource("Resource_d2yox"), SubResource("Resource_j30j6"), SubResource("Resource_y8j0k"), SubResource("Resource_ddlut"), SubResource("Resource_avco1"), SubResource("Resource_ot5mi"), SubResource("Resource_1cb8t"), SubResource("Resource_glf7d"), SubResource("Resource_ln8h3")])
+sound = ExtResource("3_prvb1")

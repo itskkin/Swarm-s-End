@@ -1,10 +1,10 @@
 extends Skill
 class_name WaterBall
-var damage : float = 200.0
+var damage : float = 12.0
 func _init(target):
-	cooldown = 10.0
+	cooldown = 3.0
 	animation_name = "water"
-	texture = preload("res://Assets/skill-texture/48x48/skill_icons48.png")
+	texture = preload("res://Assets/skill-texture/Icons/tile002.png")
 	super._init(target)
 
 func cast_spell(target):

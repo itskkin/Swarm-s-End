@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Orb" load_steps=4 format=3 uid="uid://bst62iyqq7cbj"]
+
+[ext_resource type="Texture2D" uid="uid://cdcwqejijftke" path="res://Assets/skill-texture/xp&wpIcon/magic04ring.png" id="1_iijcv"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/Orb.gd" id="2_pgkxf"]
+[ext_resource type="AudioStream" uid="uid://6pi87yi1du6j" path="res://Assets/sound/pickups1.wav" id="3_74hto"]
+
+[resource]
+script = ExtResource("2_pgkxf")
+XP = 2.0
+title = "Gold Cups"
+icon = ExtResource("1_iijcv")
+description = "Gains Experience"
+sound = ExtResource("3_74hto")

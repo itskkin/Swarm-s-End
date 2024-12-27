@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://2r2knr567nmq"]
+
+[ext_resource type="Texture2D" uid="uid://cynb2nvstguko" path="res://Characters/Enemies/Mobs/5 v1.png" id="2_ji78e"]
+
+[sub_resource type="GDScript" id="GDScript_nxy7q"]
+resource_local_to_scene = true
+script/source = "extends CharacterBody2D
+
+@export var player_reference : CharacterBody2D
+
+var damage_popup_node = preload(\"res://Scene/damage.tscn\")
+var direction : Vector2
+var speed : float = 75
+var damage : float 
+var knockback: Vector2
+var separation : float
+#Prealoding the pickup scene
+var drop = preload(\"res://Scene/pick_ups.tscn\")
+#enemy's health
+var health : float:
+	set(value):
+		health = value
+		if health <=0:
+			drop_item()
+			queue_free()
+			
+#setter flag variable for elite mobs
+var elite : bool = false:
+	set(value):
+		elite = value
+		#if its an elite then set material to the saved material
+		if value:
+			$Sprite2D.material = load(\"res://Shader/RedShaders.tres\")
+			scale = Vector2(1.5,1.5)
+			damage += 50
+			
+#store enemies resource that updates Sprite2D
+var type : Enemy:
+	set(value):
+		type = value
+		$Sprite2D.texture = value.texture
+		damage = value.damage
+		#enemy health from resource
+		health = value.health
+#in order to follow the wizzard
+#if separation is more than 500 free them from memory (only for normal spawns)
+func _physics_process(delta):
+	check_separation(delta)
+	knockback_update(delta)
+	
+	
+#Calculate separation and store it through a function
+func check_separation(_delta):
+	separation = (player_reference.position - position).length()
+	if separation >= 500 and not elite:
+		queue_free()
+		
+	#if any enemy is nearer, it will update the nearest_enemy from enemy to player
+	if separation < player_reference.nearest_enemy_distance:
+		player_reference.nearest_enemy = self
+		
+#handles the knockback of colliding enemies
+func knockback_update(delta):
+	velocity = (player_reference.position - position).normalized() * speed
+	#knockback will be decaying overtime
+	knockback = knockback.move_toward(Vector2.ZERO, 1)
+	velocity += knockback
+	
+	var collider = move_and_collide(velocity * delta)
+	#Applying knockback to bodies colliding with the enemy
+	if collider:
+		collider.get_collider().knockback = (collider.get_collider().global_position -
+		global_position).normalized() * 50
+	
+#damage pop up & add to scene tree
+func damage_popup(amount):
+	var popup = damage_popup_node.instantiate()
+	popup.text = str(amount)
+	popup.position = position + Vector2(-50,-25)
+	get_tree().current_scene.add_child(popup)
+
+#enemy taking damage
+func take_damage(amount):
+	if amount > 0:
+		#color when enemy is hit / RED
+		var tween = get_tree().create_tween()
+		tween.tween_property($Sprite2D, \"modulate\", Color(3, 0.25, 0.25), 0.2)
+		tween.chain().tween_property($Sprite2D, \"modulate\", Color(1, 1, 1), 0.2)
+		#binding the tween to the enemy itself
+		tween.bind_node(self)
+		
+		health -= amount
+		damage_popup(amount)
+		print(\"naaigo ang enemy dog : \", damage)
+ 
+##Not putting hitbox in Enemy node, keeping it lightweight
+##Keeping enemy lightweight because hundreds of them are spawning 
+
+func drop_item():
+	if type.drops.size() ==0:
+		return
+	#function to drop item, first pick a random Pickups from the array
+	var item = type.drops.pick_random()
+	
+	#Instantiate Pickup node set Resource and Reference
+	var item_to_drop = drop.instantiate()
+
+	item_to_drop.type = item
+	item_to_drop.position = position
+	item_to_drop.player_reference = player_reference
+	
+	#adding to scene_tree
+	get_tree().current_scene.call_deferred(\"add_child\", item_to_drop)
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_03ely"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 2
+script = SubResource("GDScript_nxy7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ji78e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Enemy"]]
+shape = SubResource("CircleShape2D_03ely")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Enemy" load_steps=5 format=3 uid="uid://crt05faeuhy0v"]
+
+[ext_resource type="Script" path="res://Scripts/Mobsss/EnemyType.gd" id="1_nticr"]
+[ext_resource type="Script" path="res://Scripts/Pick_Up_Resource/PickupResource.gd" id="1_tjf1i"]
+[ext_resource type="Resource" uid="uid://bst62iyqq7cbj" path="res://Resources/PickUps/Magic_ring.tres" id="2_6keqd"]
+[ext_resource type="Texture2D" uid="uid://cyy4gu21i1rr" path="res://Characters/Enemies/Mobs/17 v1.png" id="4_qsris"]
+
+[resource]
+script = ExtResource("1_nticr")
+title = "Triple"
+texture = ExtResource("4_qsris")
+health = 20.0
+damage = 1.0
+drops = Array[ExtResource("1_tjf1i")]([ExtResource("2_6keqd")])

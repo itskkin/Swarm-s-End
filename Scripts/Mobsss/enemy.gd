@@ -79,7 +79,7 @@ func take_damage(amount: float):
 	if amount > 0:
 		damage_popup(amount)
 		health -= amount
-		print("naaigo ang enemy god : ", amount)
+		print("naaigo ang enemy dog : ", amount)
 
  
 ##Not putting hitbox in Enemy node, keeping it lightweight

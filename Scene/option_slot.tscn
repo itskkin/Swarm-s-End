@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://37wiij70atqu"]
+
+[ext_resource type="Texture2D" uid="uid://b6sd75htmjt2v" path="res://Assets/skill-texture/Icon36.png" id="1_hjy88"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/option_slot.gd" id="2_71nwk"]
+[ext_resource type="FontFile" uid="uid://verkcyjmlc14" path="res://Assets/gui/font/CaslonAntique.ttf" id="2_rigmv"]
+[ext_resource type="Texture2D" uid="uid://yyugi2wqtmve" path="res://Assets/gui/frame.png" id="3_kje4n"]
+
+[node name="OptionSlot" type="TextureButton"]
+custom_minimum_size = Vector2(315, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+texture_normal = ExtResource("1_hjy88")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("2_71nwk")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 10.0
+offset_right = 89.0
+offset_bottom = 31.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_rigmv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="decription" type="Label" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 8.0
+offset_right = 299.0
+offset_bottom = 31.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+show_behind_parent = true
+custom_minimum_size = Vector2(315, 40)
+layout_mode = 0
+offset_left = -1.0
+offset_right = 39.0
+offset_bottom = 40.0
+texture = ExtResource("3_kje4n")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
